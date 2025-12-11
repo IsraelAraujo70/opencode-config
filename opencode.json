@@ -38,6 +38,20 @@
             "include": ["reasoning.encrypted_content"],
             "store": false
           }
+        },
+        "gpt-5.2-medium": {
+          "name": "Gpt-5.2 (OAuth)",
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "options": {
+            "reasoningEffort": "medium",
+            "reasoningSummary": "detailed",
+            "textVerbosity": "medium",
+            "include": ["reasoning.encrypted_content"],
+            "store": false
+          }
         }
       }
     }
