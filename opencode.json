@@ -40,7 +40,7 @@
           }
         },
         "gpt-5.2-high": {
-          "name": "Gpt-5.2 (OAuth)",
+          "name": "Gpt-5.2 high (OAuth)",
           "limit": {
             "context": 272000,
             "output": 128000
