@@ -1,6 +1,7 @@
 ---
 description: Faz code review de forma leitura, focando em bugs e riscos
 mode: subagent
+model: opencode/glm-4.7-free
 temperature: 0.1
 tools:
   write: false

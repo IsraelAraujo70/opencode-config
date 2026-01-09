@@ -1,6 +1,7 @@
 ---
 description: Busca a codebase e retorna caminhos e trechos relevantes
 mode: subagent
+model: opencode/glm-4.7-free
 temperature: 0.1
 tools:
   write: false
