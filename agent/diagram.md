@@ -27,16 +27,16 @@ Receber uma imagem de diagrama (draw.io, Lucidchart, whiteboard, etc) e gerar co
 ```mermaid
 flowchart LR
     subgraph Produtores
-        A[Modules/Services] --> B[Emit Usage Event]
-        C[Scheduler Job] --> B
+        A["Modules/Services"] --> B["Emit Usage Event"]
+        C["Scheduler Job"] --> B
     end
-    B --> D[(SQS)]
-    D --> E[worker]
-    E --> F{event_id existe?}
-    F -->|Sim| G[ACK + ignore]
-    F -->|Nao| H{Validar sku + event_type}
-    H -->|Sim| I[(usage_events)]
-    H -->|Nao| J[DLQ + out of box pattern]
+    B --> D[("SQS")]
+    D --> E["worker"]
+    E --> F{"event_id existe?"}
+    F -->|Sim| G["ACK + ignore"]
+    F -->|Nao| H{"Validar sku + event_type"}
+    H -->|Sim| I[("usage_events")]
+    H -->|Nao| J["DLQ + out of box pattern"]
 ```
 
 ### 2. Sequence Diagram
@@ -83,21 +83,21 @@ erDiagram
 ### 4. Architecture (C4-like)
 ```mermaid
 flowchart TB
-    subgraph External[Produtores Externos]
-        MS[Modules/Services]
-        SJ[Scheduler Job]
+    subgraph External["Produtores Externos"]
+        MS["Modules/Services"]
+        SJ["Scheduler Job"]
     end
     
-    subgraph Core[usage_event_service]
-        SQS[(SQS Queue)]
-        W[Worker]
-        US[UseCases]
+    subgraph Core["usage_event_service"]
+        SQS[("SQS Queue")]
+        W["Worker"]
+        US["UseCases"]
     end
     
-    subgraph Database
-        UE[(usage_events)]
-        INV[(invoices)]
-        IL[(invoice_lines)]
+    subgraph Database["Database"]
+        UE[("usage_events")]
+        INV[("invoices")]
+        IL[("invoice_lines")]
     end
     
     MS --> SQS
@@ -153,6 +153,52 @@ Descricao do que foi identificado na imagem.
 - Pontos de atencao
 ```
 
+## Regras de Sintaxe Mermaid (CRITICO)
+
+### Nodes e Labels
+- Use `["texto"]` com aspas para textos com caracteres especiais
+- NUNCA use `]` dentro de labels sem aspas - causa erro de parsing
+- Para databases: `ID[("texto")]` com aspas se tiver espacos/especiais
+- Para decisoes: `ID{"texto"}` ou `ID{{"texto"}}` para hexagono
+
+### Exemplos Corretos vs Incorretos
+
+```mermaid
+%% CORRETO - texto simples sem caracteres especiais
+A[Modulo] --> B[(Database)]
+
+%% CORRETO - texto com espacos usa aspas
+C["Modulo com espacos"] --> D[("Database Name")]
+
+%% INCORRETO - vai quebrar o parser
+%% E[sku_base + qtd + occured_at] --> F[(usage_events)]
+
+%% CORRETO - use aspas para textos complexos
+E["sku_base + qtd + occured_at"] --> F[("usage_events")]
+```
+
+### Caracteres que Requerem Aspas
+- `+` (soma)
+- `[` ou `]` (colchetes)
+- `(` ou `)` (parenteses)
+- `<` ou `>` (setas)
+- `{` ou `}` (chaves)
+- Quebras de linha (use `<br/>`)
+
+### Subgraphs
+```mermaid
+%% CORRETO
+subgraph Database["Database Layer"]
+    UE[("usage_events")]
+    INV[("invoices")]
+end
+
+%% INCORRETO - nao use [( )] complexo sem aspas
+%% subgraph Database
+%%     UE[(usage_events imutaveis [sku + qtd])]
+%% end
+```
+
 ## Instrucoes
 
 1. Analise a imagem cuidadosamente
@@ -161,5 +207,7 @@ Descricao do que foi identificado na imagem.
 4. Use nomes descritivos em portugues quando apropriado
 5. Mantenha labels e textos da imagem original
 6. Se algo estiver ilegivel, indique com [?]
-7. Gere codigo Mermaid valido e testavel
-8. Opcionalmente salve em arquivo .md se solicitado
+7. **SEMPRE use aspas para textos com caracteres especiais**
+8. **Teste mentalmente a sintaxe antes de gerar**
+9. Gere codigo Mermaid valido e testavel
+10. Opcionalmente salve em arquivo .md se solicitado
