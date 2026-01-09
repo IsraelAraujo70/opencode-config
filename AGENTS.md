@@ -13,6 +13,7 @@ Use `@agent` para invocar um agent especializado:
 | `@bruno` | glm-4.7-free | Gera requisicoes Bruno a partir de contracts |
 | `@search` | glm-4.7-free | Busca rapida na codebase (rg, fd) |
 | `@review` | glm-4.7-free | Code review focado em bugs e riscos |
+| `@diagram` | glm-4.7-free | Converte imagens de diagramas para Mermaid |
 
 ## Quando Usar Cada Agent
 
@@ -23,6 +24,7 @@ Use `@agent` para invocar um agent especializado:
 - **Bruno**: Para criar requisicoes na API collection do Bruno
 - **Search**: Para encontrar arquivos, funcoes, referencias rapidamente
 - **Review**: Para revisar codigo antes de merge/commit
+- **Diagram**: Para converter imagens de draw.io/diagramas para Mermaid
 
 ## Padroes GarantiaBR
 
