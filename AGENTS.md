@@ -14,6 +14,7 @@ Use `@agent` para invocar um agent especializado:
 | `@search` | glm-4.7-free | Busca rapida na codebase (rg, fd) |
 | `@review` | glm-4.7-free | Code review focado em bugs e riscos |
 | `@diagram` | glm-4.7-free | Converte imagens de diagramas para Mermaid |
+| `@e2e` | glm-4.7-free | Testa fluxos E2E em APIs com curl |
 
 ## Quando Usar Cada Agent
 
@@ -25,6 +26,7 @@ Use `@agent` para invocar um agent especializado:
 - **Search**: Para encontrar arquivos, funcoes, referencias rapidamente
 - **Review**: Para revisar codigo antes de merge/commit
 - **Diagram**: Para converter imagens de draw.io/diagramas para Mermaid
+- **E2E**: Para testar APIs de ponta a ponta (descobre config, roda servidor em background, testa com curl)
 
 ## Padroes GarantiaBR
 
