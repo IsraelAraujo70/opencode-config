@@ -1,7 +1,7 @@
 ---
 description: Explica codigo e arquitetura (read-only)
 mode: subagent
-model: opencode/glm-4.7-free
+model: openai/gpt-5.2-codex
 temperature: 0.3
 tools:
   write: false

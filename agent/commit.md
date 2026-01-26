@@ -1,7 +1,7 @@
 ---
 description: Gera commits convencionais e cria PRs com gh cli
 mode: subagent
-model: opencode/glm-4.7-free
+model: openai/gpt-5.2-codex
 temperature: 0.1
 tools:
   write: false

@@ -1,6 +1,6 @@
 ---
 description: Check Antigravity quota status for all configured Google accounts
-model: opencode/grok-code
+model: opencode/big-pickle
 ---
 
 Use the `antigravity_quota` tool to check the current quota status.
