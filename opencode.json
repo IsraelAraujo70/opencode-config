@@ -1,147 +1,126 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": [
-        "opencode-antigravity-auth@latest",
-        "opencode-antigravity-quota@latest"
-    ],
-    "provider": {
-        "google": {
-            "models": {
-                "antigravity-claude-opus-4-5-thinking": {
-                    "name": "Claude Opus 4.5 Thinking",
-                    "limit": {
-                        "context": 200000,
-                        "output": 64000
-                    },
-                    "modalities": {
-                        "input": [
-                            "text",
-                            "image",
-                            "pdf"
-                        ],
-                        "output": [
-                            "text"
-                        ]
-                    },
-                    "variants": {
-                        "low": {
-                            "thinkingConfig": {
-                                "thinkingBudget": 8192
-                            }
-                        },
-                        "max": {
-                            "thinkingConfig": {
-                                "thinkingBudget": 32768
-                            }
-                        }
-                    }
-                },
-                "gemini-3-pro-preview": {
-                    "name": "Gemini 3 Pro Preview",
-                    "limit": {
-                        "context": 1000000,
-                        "output": 65536
-                    },
-                    "modalities": {
-                        "input": [
-                            "text",
-                            "image",
-                            "pdf"
-                        ],
-                        "output": [
-                            "text"
-                        ]
-                    },
-                    "variants": {
-                        "low": {
-                            "thinkingLevel": "low"
-                        },
-                        "high": {
-                            "thinkingLevel": "high"
-                        }
-                    }
-                },
-                "gemini-3-flash-preview": {
-                    "name": "Gemini 3 Flash Preview",
-                    "limit": {
-                        "context": 1000000,
-                        "output": 65536
-                    },
-                    "modalities": {
-                        "input": [
-                            "text",
-                            "image",
-                            "pdf"
-                        ],
-                        "output": [
-                            "text"
-                        ]
-                    },
-                    "variants": {
-                        "minimal": {
-                            "thinkingLevel": "minimal"
-                        },
-                        "low": {
-                            "thinkingLevel": "low"
-                        },
-                        "medium": {
-                            "thinkingLevel": "medium"
-                        },
-                        "high": {
-                            "thinkingLevel": "high"
-                        }
-                    }
-                }
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "opencode-antigravity-auth@latest",
+    "opencode-antigravity-quota@latest"
+  ],
+  "provider": {
+    "google": {
+      "models": {
+        "antigravity-claude-opus-4-6-thinking": {
+          "name": "Claude Opus 4.6 Thinking",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
             }
-        }
-    },
-    "agent": {
-        "build": {
-            "description": "Build agent configured for command-level approvals",
-            "permission": {
-                "edit": "ask",
-                "bash": {
-                    "*": "allow",
-                    "git": "ask",
-                    "git *": "ask",
-                    "rf": "ask",
-                    "rf *": "ask",
-                    "npx": "ask",
-                    "npx *": "ask",
-                    "python": "ask",
-                    "python *": "ask",
-                    "uvx": "ask",
-                    "uvx *": "ask"
-                }
-            }
+          }
         },
-        "plan": {
-            "description": "Plan mode: read and explore to identify the best solution before development",
-            "permission": {
-                "edit": "deny",
-                "bash": "allow",
-                "webfetch": "allow"
+        "gemini-3-pro-preview": {
+          "name": "Gemini 3 Pro Preview",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
             }
+          }
         },
-        "auto-builder": {
-            "description": "Auto-builder mode: unrestricted tools and edits",
-            "permission": {
-                "edit": "allow",
-                "bash": "allow",
-                "webfetch": "allow",
-                "doom_loop": "allow",
-                "external_directory": "allow"
+        "gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash Preview",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "minimal": {
+              "thinkingLevel": "minimal"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
             }
+          }
         }
-    },
-    "mcp": {
-        "mgrep": {
-            "type": "local",
-            "command": [
-                "mgrep",
-                "mcp"
-            ],
-            "enabled": true
-        }
+      }
     }
+  },
+  "agent": {
+    "build": {
+      "description": "Build agent configured for command-level approvals",
+      "permission": {
+        "edit": "ask",
+        "bash": {
+          "*": "allow",
+          "git": "ask",
+          "git *": "ask",
+          "rf": "ask",
+          "rf *": "ask",
+          "npx": "ask",
+          "npx *": "ask",
+          "python": "ask",
+          "python *": "ask",
+          "uvx": "ask",
+          "uvx *": "ask"
+        }
+      }
+    },
+    "plan": {
+      "description": "Plan mode: read and explore to identify the best solution before development",
+      "permission": {
+        "edit": "deny",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "auto-builder": {
+      "description": "Auto-builder mode: unrestricted tools and edits",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow",
+        "doom_loop": "allow",
+        "external_directory": "allow"
+      }
+    }
+  },
+  "mcp": {
+    "mgrep": {
+      "type": "local",
+      "command": ["mgrep", "mcp"],
+      "enabled": true
+    }
+  }
 }
