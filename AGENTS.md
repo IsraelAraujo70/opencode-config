@@ -70,3 +70,31 @@ projeto/
 2. Cite arquivos com path:linha ao apontar problemas
 3. Use portugues nas mensagens de commit e documentacao
 4. Siga os padroes do projeto existente
+
+
+No jj, você cria “workspaces” escolhendo o caminho da pasta na hora.
+
+  cd /home/israel/projetos/garantiabr/notifier
+
+  # cria 2 workspaces para agentes
+  jj workspace add ../notifier-agent-1 --name agent-1 -r @
+  jj workspace add ../notifier-agent-2 --name agent-2 -r @
+
+  # listar workspaces
+  jj workspace list
+
+  # ver caminho físico de um workspace
+  jj workspace root --name agent-1
+
+  Onde ficam as pastas:
+
+  - As pastas de trabalho ficam exatamente no DESTINATION que você passou (../notifier-agent-1, etc).
+  - Não tem “pasta central obrigatória” como no git worktree; você define o layout.
+  - Metadados do jj ficam no .jj de cada workspace (com estado de working copy).
+
+  Pra remover:
+
+  jj workspace forget agent-1   # remove do controle do jj
+  rm -rf ../notifier-agent-1    # apaga a pasta do disco (opcional)
+
+  Se quiser, eu já monto um padrão único pra todos os repos tipo ../_ws/<repo>/agent-1, agent-2, agent-
