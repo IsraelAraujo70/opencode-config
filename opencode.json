@@ -1,5 +1,18 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": ["@warp-dot-dev/opencode-warp"],
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "@playwright/mcp@latest",
+        "--config",
+        "/home/israel/.config/opencode/playwright-mcp.config.json"
+      ],
+      "enabled": true
+    }
+  },
   "agent": {
     "build": {
       "description": "Build agent configured for command-level approvals",
@@ -45,6 +58,26 @@
       "models": {
         "gpt-5.4": {
           "name": "GPT-5.4",
+          "variants": {
+            "low": {
+              "reasoningEffort": "low",
+              "textVerbosity": "low",
+              "reasoningSummary": "auto"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "textVerbosity": "low",
+              "reasoningSummary": "auto"
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "textVerbosity": "low",
+              "reasoningSummary": "auto"
+            }
+          }
+        },
+        "gpt-5.5": {
+          "name": "GPT-5.5",
           "variants": {
             "low": {
               "reasoningEffort": "low",
